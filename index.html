@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Grade System Part 2</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title_box">
+        <h2>Grade System</h2>
+      </div>
+      <div class="form_header_wrap">
+        <div class="form_header_box">
+          <h4>Subject name</h4>
+        </div>
+        <div class="form_header_box">
+          <h4>Subject marks</h4>
+        </div>
+        <div class="form_header_box">
+          <h4>Point</h4>
+        </div>
+        <div class="form_header_box">
+          <h4>Grade</h4>
+        </div>
+      </div>
+      <div class="form_wrap">
+        <form action="#" class="grade_form">
+          <div class="form_inner_wrap">
+            <div class="inputs_row">
+              <div class="input_box">
+                <input
+                  type="text"
+                  placeholder="Subject name"
+                  class="sub_name"
+                />
+              </div>
+              <div class="input_box sub_mark_box">
+                <input
+                  type="text"
+                  placeholder="Subject marks"
+                  class="sub_mark"
+                />
+              </div>
+              <div class="input_box point_box">
+                <div class="point_res_box res_box">- -</div>
+              </div>
+              <div class="input_box grade_box">
+                <div class="grade_res_box res_box">- -</div>
+              </div>
+
+              <div class="remove_row_icon" title="Delete this row">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-trash-2"
+                >
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path
+                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                  ></path>
+                  <line x1="10" y1="11" x2="10" y2="17"></line>
+                  <line x1="14" y1="11" x2="14" y2="17"></line>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="add_and_submit_button_wrap">
+            <button type="button" class="add_btn">Add New Row</button>
+            <button type="submit" class="submit_btn">Check Result</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="final_res_wrap"></div>
+    </div>
+    <script src="./js/jquery_3.5.1.js"></script>
+    <script src="./js/validate.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
