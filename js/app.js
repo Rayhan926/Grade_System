@@ -219,7 +219,7 @@ $(document).ready(function () {
  *
  */
 
-let url = "https://rayhan926.github.io/mockjson/popup.json";
+let url = "https://rayhan926.github.io/popup/popup.json";
 fetch(url)
   .then((resp) => resp.json())
   .then(function (data) {
