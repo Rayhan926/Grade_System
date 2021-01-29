@@ -70,32 +70,38 @@ $(document).ready(function () {
     $(".inputs_row").each(function () {
       $(this).removeClass("opps");
       let thisVal = Number($.trim($(this).find(".sub_mark").val()));
+      let thisValStr = $.trim($(this).find(".sub_mark").val());
       let thisSubName = $(this).find(".sub_name");
-      thisVal === 0 || thisVal == null ? $(this).remove() : null;
+      let thisMarkBox = $(this).find(".sub_mark_box");
+      if (thisValStr == "" || thisValStr == null) $(this).remove();
       set_alert();
-      if (
-        Number.isInteger(thisVal) &&
-        $(".inputs_row").length > 0 &&
-        thisVal <= obj.aPlusGrade.max
-      ) {
-        $.trim(thisSubName.val()) === "" ||
-        thisSubName.val().split(" ")[0] == "Subject"
-          ? thisSubName.val("Subject " + count)
-          : null;
-        set_grade_and_point(thisVal, $(this));
-      } else if (thisVal > obj.aPlusGrade.max) {
-        stringCheck.push("check");
-        $(this)
-          .find(".sub_mark_box")
-          .append(
-            `<p class='error_para'>Mark can't be bigger then ${obj.aPlusGrade.max}</p>`
-          );
-      } else {
-        stringCheck.push("check");
-        $(this)
-          .find(".sub_mark_box")
-          .append("<p class='error_para'>Mark should be only number</p>");
+      if (!Number.isInteger(thisVal)) {
+        stringCheck.push("error");
+        thisMarkBox.append(
+          "<p class='error_para'>Mark should be only number</p>"
+        );
+        return;
       }
+      if (thisVal < 0) {
+        stringCheck.push("error");
+        thisMarkBox.append(
+          "<p class='error_para'>Mark can't be less then 0 </p>"
+        );
+        return;
+      }
+      if (thisVal > obj.aPlusGrade.max) {
+        stringCheck.push("error");
+        thisMarkBox.append(
+          `<p class='error_para'>Mark can't be bigger then ${obj.aPlusGrade.max}</p>`
+        );
+        return;
+      }
+
+      $.trim(thisSubName.val()) === "" ||
+      thisSubName.val().split(" ")[0] == "Subject"
+        ? thisSubName.val("Subject " + count)
+        : null;
+      set_grade_and_point(thisVal, $(this));
       count++;
     });
 
@@ -165,6 +171,7 @@ $(document).ready(function () {
     let avgMarks = (totalMarks / totalSub).toFixed(2);
     let avgPoints = (totalPoints / totalSub).toFixed(2);
 
+    if (Number(avgPoints).toFixed(2) <= 0) passFailCount.push("fail");
     if (avgPoints >= obj.aPlusGrade.point) {
       finalGrade = obj.aPlusGrade.grade;
     } else if (avgPoints >= obj.aGrade.point) {
