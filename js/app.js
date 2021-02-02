@@ -14,37 +14,37 @@ $(document).ready(function () {
     },
     aGrade: {
       min: 70,
-      max: 79,
+      max: 79.99,
       grade: "A",
       point: 4.0,
     },
     aMinusGrade: {
       min: 60,
-      max: 69,
+      max: 69.99,
       grade: "A-",
       point: 3.5,
     },
     bGrade: {
       min: 50,
-      max: 59,
+      max: 59.99,
       grade: "B",
       point: 3.0,
     },
     cGrade: {
       min: 40,
-      max: 49,
+      max: 49.99,
       grade: "C",
       point: 2.0,
     },
     dGrade: {
       min: 33,
-      max: 39,
+      max: 39.99,
       grade: "D",
       point: 1.0,
     },
     fGrade: {
       min: 0,
-      max: 32,
+      max: 32.99,
       grade: "F",
       point: 0.0,
     },
@@ -73,9 +73,10 @@ $(document).ready(function () {
       let thisValStr = $.trim($(this).find(".sub_mark").val());
       let thisSubName = $(this).find(".sub_name");
       let thisMarkBox = $(this).find(".sub_mark_box");
+      var numberRegex = new RegExp(/^\d*\.?\d*$/);
       if (thisValStr == "" || thisValStr == null) $(this).remove();
       set_alert();
-      if (!Number.isInteger(thisVal)) {
+      if (!numberRegex.test(thisVal)) {
         stringCheck.push("error");
         thisMarkBox.append(
           "<p class='error_para'>Mark should be only number</p>"
@@ -146,7 +147,7 @@ $(document).ready(function () {
       pointBox.text(obj.dGrade.point.toFixed(2));
       allPoints.push(obj.dGrade.point);
       gradeBox.text(obj.dGrade.grade);
-    } else {
+    } else if (val >= obj.fGrade.min && val <= obj.fGrade.max) {
       pointBox.text(obj.fGrade.point.toFixed(2));
       allPoints.push(obj.fGrade.point);
       gradeBox.text(obj.fGrade.grade);
